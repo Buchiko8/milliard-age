@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180">
+  <rect width="180" height="180" rx="40" fill="#111827" />
+  <circle cx="90" cy="90" r="54" fill="#2563eb" />
+  <path
+    d="M90 50c6 0 10 4 10 10v30l20 14c4 3 5 10 2 14-3 4-10 5-14 2L84 103a10 10 0 0 1-4-8V60c0-6 4-10 10-10Z"
+    fill="#fff"
+  />
+</svg>
