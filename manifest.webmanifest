@@ -1,8 +1,8 @@
-{
-  "name": "Sekunder mellem datoer",
-  "short_name": "Sekunder",
-  "description": "Beregn antal sekunder mellem to datoer.",
-  "lang": "da",
+﻿{
+  "name": "Seconds Between Dates",
+  "short_name": "Seconds",
+  "description": "Calculate the number of seconds between two dates.",
+  "lang": "en",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

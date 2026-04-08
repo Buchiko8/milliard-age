@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+﻿import { useEffect, useMemo, useState } from "react";
 
 function getInitialDateTime() {
   const now = new Date();
@@ -18,11 +18,11 @@ function parseDate(value) {
 }
 
 function formatNumber(value) {
-  return new Intl.NumberFormat("da-DK").format(value);
+  return new Intl.NumberFormat("en-US").format(value);
 }
 
 function formatDateTime(date) {
-  return new Intl.DateTimeFormat("da-DK", {
+  return new Intl.DateTimeFormat("en-US", {
     dateStyle: "full",
     timeStyle: "medium",
   }).format(date);
@@ -35,7 +35,7 @@ function formatDuration(totalSeconds) {
   const minutes = Math.floor((absSeconds % 3600) / 60);
   const seconds = absSeconds % 60;
 
-  return `${formatNumber(days)} dage, ${hours} timer, ${minutes} minutter og ${seconds} sekunder`;
+  return `${formatNumber(days)} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds`;
 }
 
 export default function App() {
@@ -75,14 +75,14 @@ export default function App() {
   return (
     <main className="page">
       <section className="card">
-        <h1>Sekunder mellem datoer</h1>
+        <h1>Seconds Between Dates</h1>
         <p className="lead">
-          Vælg en startdato og et sluttidspunkt. Du kan bruge tidspunktet nu
-          eller selv vælge en slutdato.
+          Choose a start date and an end time. You can use the current time or
+          pick a custom end date.
         </p>
 
         <label className="field">
-          <span>Startdato og tidspunkt</span>
+          <span>Start date and time</span>
           <input
             type="datetime-local"
             value={startDate}
@@ -96,12 +96,12 @@ export default function App() {
             checked={useNowAsEndDate}
             onChange={(event) => setUseNowAsEndDate(event.target.checked)}
           />
-          <span>Brug nu som slutdato</span>
+          <span>Use now as end date</span>
         </label>
 
         {!useNowAsEndDate ? (
           <label className="field">
-            <span>Slutdato og tidspunkt</span>
+            <span>End date and time</span>
             <input
               type="datetime-local"
               value={endDate}
@@ -113,33 +113,33 @@ export default function App() {
         {hasValidDates ? (
           <>
             <div className="result">
-              <div className="result-label">Antal sekunder mellem datoerne</div>
+              <div className="result-label">Seconds between the dates</div>
               <div className="result-value">{formatNumber(secondsBetween)}</div>
             </div>
 
             <div className="info-grid">
               <div className="info-box">
-                <div className="info-label">Startdato</div>
+                <div className="info-label">Start date</div>
                 <div className="info-text">{formatDateTime(selectedStartDate)}</div>
               </div>
 
               <div className="info-box">
-                <div className="info-label">Slutdato</div>
+                <div className="info-label">End date</div>
                 <div className="info-text">{formatDateTime(selectedEndDate)}</div>
               </div>
             </div>
 
             <div className="info-box">
-              <div className="info-label">Omregnet varighed</div>
+              <div className="info-label">Converted duration</div>
               <div className="info-text">
                 {secondsBetween >= 0
                   ? formatDuration(secondsBetween)
-                  : `${formatDuration(secondsBetween)} baglæns`}
+                  : `${formatDuration(secondsBetween)} backwards`}
               </div>
             </div>
           </>
         ) : (
-          <div className="error-box">Indtast gyldige datoer og tidspunkter.</div>
+          <div className="error-box">Enter valid dates and times.</div>
         )}
       </section>
     </main>
