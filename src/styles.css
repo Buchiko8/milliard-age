@@ -148,6 +148,63 @@ h1 {
   border: 1px solid rgba(248, 113, 113, 0.25);
 }
 
+.donate-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 28px;
+  padding: 20px 22px;
+  border: 1px solid rgba(251, 191, 36, 0.28);
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(120, 53, 15, 0.42), rgba(30, 41, 59, 0.7));
+}
+
+.donate-eyebrow {
+  display: block;
+  margin-bottom: 4px;
+  color: #fbbf24;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.donate-box h2 {
+  margin: 0;
+  font-size: 1.35rem;
+}
+
+.donate-box p {
+  margin: 4px 0 0;
+  color: #d1d5db;
+  font-size: 0.92rem;
+}
+
+.donate-link {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 16px;
+  border-radius: 12px;
+  background: #fbbf24;
+  color: #1c1917;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.donate-link:hover {
+  background: #fcd34d;
+  transform: translateY(-1px);
+}
+
+.donate-link:focus-visible {
+  outline: 3px solid rgba(251, 191, 36, 0.4);
+  outline-offset: 3px;
+}
+
 @media (max-width: 640px) {
   .page {
     padding: 16px;
