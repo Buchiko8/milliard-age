@@ -81,6 +81,22 @@ export default function App() {
           pick a custom end date.
         </p>
 
+        <aside className="donate-box" aria-label="Support this project">
+          <div>
+            <span className="donate-eyebrow">Support the project</span>
+            <h2>Donate</h2>
+            <p>If you find this tool useful, you can support me via Ko-fi.</p>
+          </div>
+          <a
+            className="donate-link"
+            href="https://ko-fi.com/buchiko"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Donate <span aria-hidden="true">↗</span>
+          </a>
+        </aside>
+
         <label className="field">
           <span>Start date and time</span>
           <input
@@ -142,21 +158,6 @@ export default function App() {
           <div className="error-box">Enter valid dates and times.</div>
         )}
 
-        <aside className="donate-box" aria-label="Support this project">
-          <div>
-            <span className="donate-eyebrow">Support the project</span>
-            <h2>Donate</h2>
-            <p>If you find this tool useful, you can support me via Ko-fi.</p>
-          </div>
-          <a
-            className="donate-link"
-            href="https://ko-fi.com/buchiko"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Donate <span aria-hidden="true">↗</span>
-          </a>
-        </aside>
       </section>
     </main>
   );
