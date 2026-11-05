@@ -1,4 +1,6 @@
 ﻿import { useEffect, useMemo, useState } from "react";
+import DateWheel from "./DateWheel.jsx";
+import WealthChallenge from "./WealthChallenge.jsx";
 
 function getInitialDateTime() {
   const now = new Date();
@@ -43,6 +45,7 @@ export default function App() {
   const [useNowAsEndDate, setUseNowAsEndDate] = useState(true);
   const [endDate, setEndDate] = useState(getInitialDateTime);
   const [now, setNow] = useState(Date.now());
+  const [donatePulse, setDonatePulse] = useState(0);
 
   useEffect(() => {
     if (!useNowAsEndDate) {
@@ -75,20 +78,15 @@ export default function App() {
   return (
     <main className="page">
       <section className="card">
-        <h1>Seconds Between Dates</h1>
-        <p className="lead">
-          Choose a start date and an end time. You can use the current time or
-          pick a custom end date.
-        </p>
+        <div className="page-title-row">
+          <h1>Seconds Since...</h1>
+          <a key={donatePulse} className={`donate-mini${donatePulse ? " donate-mini--pulse" : ""}`} href="https://ko-fi.com/buchiko" target="_blank" rel="noopener noreferrer" aria-label="Donate via Ko-fi" title="Support via Ko-fi">
+            <svg viewBox="0 0 32 32" width="29" height="29" aria-hidden="true" fill="none"><path d="M5 9h19v10a8 8 0 0 1-8 8h-3a8 8 0 0 1-8-8V9Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/><path d="M24 12h2a4 4 0 0 1 0 8h-2" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><path d="M14.5 22 10 17.7c-2.4-2.7 1.1-5.6 3.4-3.1l1.1 1.1 1.1-1.1c2.3-2.5 5.8.4 3.4 3.1L14.5 22Z" fill="currentColor"/></svg>
+            <span>Donate</span>
+          </a>
+        </div>
 
-        <label className="field">
-          <span>Start date and time</span>
-          <input
-            type="datetime-local"
-            value={startDate}
-            onChange={(event) => setStartDate(event.target.value)}
-          />
-        </label>
+        <DateWheel label="Start date and time" value={startDate} onChange={setStartDate} onComplete={() => setDonatePulse((count) => count + 1)} />
 
         <label className="toggle">
           <input
@@ -100,14 +98,7 @@ export default function App() {
         </label>
 
         {!useNowAsEndDate ? (
-          <label className="field">
-            <span>End date and time</span>
-            <input
-              type="datetime-local"
-              value={endDate}
-              onChange={(event) => setEndDate(event.target.value)}
-            />
-          </label>
+          <DateWheel label="End date and time" value={endDate} onChange={setEndDate} onComplete={() => setDonatePulse((count) => count + 1)} />
         ) : null}
 
         {hasValidDates ? (
@@ -142,21 +133,7 @@ export default function App() {
           <div className="error-box">Enter valid dates and times.</div>
         )}
 
-        <aside className="donate-box" aria-label="Support this project">
-          <div>
-            <span className="donate-eyebrow">Support the project</span>
-            <h2>Donate</h2>
-            <p>If you find this tool useful, you can support me via Ko-fi.</p>
-          </div>
-          <a
-            className="donate-link"
-            href="https://ko-fi.com/buchiko"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Donate <span aria-hidden="true">↗</span>
-          </a>
-        </aside>
+        <WealthChallenge />
       </section>
     </main>
   );
