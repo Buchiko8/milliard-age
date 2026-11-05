@@ -41,16 +41,27 @@ function formatDuration(totalSeconds) {
 }
 
 export default function App() {
-  const [startDate, setStartDate] = useState(getInitialDateTime);
+  const [startDate, setStartDate] = useState("");
   const [useNowAsEndDate, setUseNowAsEndDate] = useState(true);
   const [endDate, setEndDate] = useState(getInitialDateTime);
   const [now, setNow] = useState(Date.now());
   const [donatePulse, setDonatePulse] = useState(0);
   const [hasChosenDate, setHasChosenDate] = useState(false);
-  const [resultReveal, setResultReveal] = useState(0);
+  useEffect(() => {
+    if (!parseDate(startDate)) {
+      setHasChosenDate(false);
+      return undefined;
+    }
+    // Wait until the native date picker has settled before showing the result.
+    const timer = window.setTimeout(() => {
+      setHasChosenDate(true);
+      setDonatePulse((count) => count + 1);
+    }, 650);
+    return () => window.clearTimeout(timer);
+  }, [startDate]);
 
   useEffect(() => {
-    if (!useNowAsEndDate) {
+    if (!useNowAsEndDate || !hasChosenDate) {
       return undefined;
     }
 
@@ -59,7 +70,7 @@ export default function App() {
     }, 1000);
 
     return () => window.clearInterval(intervalId);
-  }, [useNowAsEndDate]);
+  }, [useNowAsEndDate, hasChosenDate]);
 
   const selectedStartDate = useMemo(() => parseDate(startDate), [startDate]);
   const selectedEndDate = useMemo(() => {
@@ -90,7 +101,7 @@ export default function App() {
 
         <label className="field guided-date">
           <span>Choose your date and time</span>
-          <input type="datetime-local" value={startDate} onChange={(event) => { setStartDate(event.target.value); setHasChosenDate(true); setResultReveal((count) => count + 1); setDonatePulse((count) => count + 1); }} />
+          <input aria-label="Choose your date and time" type="datetime-local" value={startDate} onChange={(event) => setStartDate(event.target.value)} />
         </label>
 
         <label className="toggle">
@@ -105,13 +116,13 @@ export default function App() {
         {!useNowAsEndDate ? (
           <label className="field">
             <span>End date and time</span>
-            <input type="datetime-local" value={endDate} onChange={(event) => { setEndDate(event.target.value); setResultReveal((count) => count + 1); setDonatePulse((count) => count + 1); }} />
+            <input aria-label="End date and time" type="datetime-local" value={endDate} onChange={(event) => setEndDate(event.target.value)} />
           </label>
         ) : null}
 
         {hasChosenDate && hasValidDates ? (
           <>
-            <div className="result result-reveal" key={resultReveal}>
+            <div className="result result-reveal">
               <div className="result-label">Seconds between the dates</div>
               <div className="result-value">{formatNumber(secondsBetween)}</div>
             </div>
@@ -137,7 +148,7 @@ export default function App() {
               </div>
             </div>
           </>
-        ) : !hasValidDates ? (
+        ) : startDate && !hasValidDates ? (
           <div className="error-box">Enter valid dates and times.</div>
         ) : (
           <p className="result-prompt">Choose a date above to see your result.</p>
