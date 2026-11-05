@@ -298,3 +298,9 @@ h1 {
 .challenge-content .challenge-note{color:#94a3b8;font-size:.74rem;line-height:1.45;margin:12px 0 0}
 .challenge-content .challenge-error{color:#fca5a5;font-size:.83rem}
 @media(max-width:640px){.wealth-challenge{padding:12px 13px}.challenge-toggle{font-size:.89rem}.challenge-content h2{font-size:1.04rem}.challenge-options{gap:8px}}
+/* The optional challenge lives inside the start-date picker, below the time. */
+.date-wheel-popover .wealth-challenge{margin-top:11px;padding:10px 12px;border-radius:11px;background:#172237}
+.date-wheel-popover .challenge-toggle{font-size:.85rem}
+.date-wheel-popover .challenge-toggle input{width:18px;height:18px}
+.date-wheel-popover .challenge-content{margin-top:10px;padding-top:10px}
+.date-wheel-popover .wheel-done{margin-top:10px}

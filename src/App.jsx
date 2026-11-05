@@ -1,6 +1,6 @@
 ﻿import { useEffect, useMemo, useState } from "react";
 import DateWheel from "./DateWheel.jsx";
-import WealthChallenge from "./WealthChallenge.jsx";
+
 
 function getInitialDateTime() {
   const now = new Date();
@@ -86,7 +86,7 @@ export default function App() {
           </a>
         </div>
 
-        <DateWheel label="Start date and time" value={startDate} onChange={setStartDate} onComplete={() => setDonatePulse((count) => count + 1)} />
+        <DateWheel label="Start date and time" value={startDate} onChange={setStartDate} onComplete={() => setDonatePulse((count) => count + 1)} showChallenge />
 
         <label className="toggle">
           <input
@@ -133,7 +133,6 @@ export default function App() {
           <div className="error-box">Enter valid dates and times.</div>
         )}
 
-        <WealthChallenge />
       </section>
     </main>
   );

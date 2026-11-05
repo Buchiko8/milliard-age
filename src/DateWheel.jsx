@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import WealthChallenge from "./WealthChallenge.jsx";
 
 const MONTHS = Array.from({ length: 12 }, (_, i) => new Intl.DateTimeFormat("en-US", { month: "short", timeZone: "UTC" }).format(new Date(Date.UTC(2000, i, 1))));
 const YEARS = Array.from({ length: 301 }, (_, i) => 1900 + i);
@@ -51,7 +52,7 @@ function WheelColumn({ label, choices, selected, onSelect }) {
   );
 }
 
-export default function DateWheel({ label, value, onChange, onComplete }) {
+export default function DateWheel({ label, value, onChange, onComplete, showChallenge = false }) {
   const [open, setOpen] = useState(false);
   const container = useRef(null);
   const [date, time = "00:00"] = (value || "").split("T");
@@ -96,6 +97,7 @@ export default function DateWheel({ label, value, onChange, onComplete }) {
             <WheelColumn label="Year" choices={years} selected={year} onSelect={(n) => changeDate("year", n)} />
           </div>
           <label className="wheel-time">Time <input type="time" aria-label={`${label} time`} value={time} onChange={(event) => onChange(`${date}T${event.target.value}`)} /></label>
+          {showChallenge && <WealthChallenge />}
           <button className="wheel-done" type="button" onClick={() => { setOpen(false); onComplete?.(); }}>Done</button>
         </div>
       )}
