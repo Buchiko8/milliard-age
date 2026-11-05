@@ -269,38 +269,11 @@ h1 {
 .wheel-help{margin:0 0 6px;font-size:.73rem}
 .wheel-time{margin-top:8px}
 .wheel-done{margin-top:8px;padding:8px}
-@media(max-width:640px){.date-wheel-popover{padding:8px}.date-wheel-columns{gap:5px}.wheel-scroller{height:180px}}/* Optional two-round wealth challenge */
-.wealth-challenge{margin-top:22px;border:1px solid #374151;background:#182337;border-radius:15px;padding:15px 17px}
-.challenge-toggle{display:flex;align-items:center;gap:11px;cursor:pointer;color:#f3f4f6;font-weight:650;font-size:.95rem}
-.challenge-toggle input{width:20px;height:20px;accent-color:#60a5fa;flex-shrink:0;cursor:pointer}
-.challenge-content{margin-top:15px;padding-top:14px;border-top:1px solid #374151}
-.challenge-content p{color:#d1d5db;margin:0 0 13px;line-height:1.5;font-size:.94rem}
-.challenge-content strong{color:#f9fafb}
-.challenge-age{display:flex;align-items:center;gap:12px;justify-content:space-between;margin:15px 0}
-.challenge-age span{font-size:.88rem;color:#d1d5db}
-.challenge-age input{width:110px;max-width:48%;background:#111827;color:#fff;border:1px solid #475569;border-radius:10px;padding:10px}
-.challenge-age input:focus-visible,.challenge-options button:focus-visible,.challenge-primary:focus-visible,.challenge-finish button:focus-visible{outline:2px solid #93c5fd;outline-offset:2px}
-.challenge-primary{display:inline-flex;align-items:center;justify-content:center;min-height:39px;padding:9px 16px;border:0;border-radius:10px;background:#2563eb;color:white;font-weight:700;cursor:pointer}
-.challenge-primary:disabled{opacity:.45;cursor:not-allowed}
-.challenge-step{display:inline-block;font-weight:750;letter-spacing:.06em;text-transform:uppercase;font-size:.72rem;color:#93c5fd;margin-bottom:10px}
-.challenge-content h2{font-size:1.12rem;margin:12px 0 14px;line-height:1.3}
-.challenge-content .challenge-math{font-size:.81rem;color:#9ca3af;margin-top:-5px}
-.challenge-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0 16px}
-.challenge-options button{border:1px solid #64748b;background:#26374f;color:#f8fafc;border-radius:10px;padding:12px 8px;font-weight:700;cursor:pointer;min-height:44px}
-.challenge-options button:not(:disabled):hover{background:#344a6a}
-.challenge-options button:disabled{cursor:default;opacity:.64}
-.challenge-reveal{border-top:1px solid #374151;padding-top:13px}
-.challenge-reveal>strong{display:block;color:#fbbf24;margin-bottom:8px}
-.challenge-reveal a,.challenge-finish a{color:#fbbf24;text-underline-offset:3px}
-.challenge-reveal p{font-size:.86rem}
-.challenge-finish{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.challenge-finish button{background:#334155;border:1px solid #64748b;color:#fff;border-radius:10px;padding:9px 14px;cursor:pointer}
-.challenge-content .challenge-note{color:#94a3b8;font-size:.74rem;line-height:1.45;margin:12px 0 0}
-.challenge-content .challenge-error{color:#fca5a5;font-size:.83rem}
-@media(max-width:640px){.wealth-challenge{padding:12px 13px}.challenge-toggle{font-size:.89rem}.challenge-content h2{font-size:1.04rem}.challenge-options{gap:8px}}
-/* The optional challenge lives inside the start-date picker, below the time. */
-.date-wheel-popover .wealth-challenge{margin-top:11px;padding:10px 12px;border-radius:11px;background:#172237}
-.date-wheel-popover .challenge-toggle{font-size:.85rem}
-.date-wheel-popover .challenge-toggle input{width:18px;height:18px}
-.date-wheel-popover .challenge-content{margin-top:10px;padding-top:10px}
-.date-wheel-popover .wheel-done{margin-top:10px}
+@media(max-width:640px){.date-wheel-popover{padding:8px}.date-wheel-columns{gap:5px}.wheel-scroller{height:180px}}/* Guided opening: date first, answer only after a choice. */
+.guided-date{margin-top:20px;padding:15px;border:1px solid rgba(96,165,250,.46);border-radius:15px;background:rgba(37,99,235,.08);box-shadow:0 0 18px rgba(37,99,235,.07)}
+.guided-date span{color:#dbeafe;font-size:.97rem}
+.guided-date input{cursor:pointer;background:#111827;color-scheme:dark;border-color:#64748b;font-size:1.08rem}
+.result-prompt{text-align:center;color:#94a3b8;font-size:.86rem;margin:20px 0 0}
+.result-reveal{animation:answer-rise .55s ease-out both}
+@keyframes answer-rise{0%{opacity:0;transform:translateY(16px) scale(.96);box-shadow:0 0 0 rgba(59,130,246,0)}65%{opacity:1;transform:translateY(-3px) scale(1.012);box-shadow:0 5px 32px rgba(59,130,246,.27)}100%{opacity:1;transform:translateY(0) scale(1);box-shadow:0 0 0 rgba(59,130,246,0)}}
+@media(prefers-reduced-motion:reduce){.result-reveal{animation:none}}
